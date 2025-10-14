@@ -1,0 +1,1 @@
+dw.sh------> A dynamic wallpaper changer by default changes wallpaper every hour
