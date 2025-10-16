@@ -37,8 +37,8 @@ _main(){
     --image|-i)
       img=${2:-}
       [ ! -f "${img}" ] && printf "File not found" && exit 1 
-      
-      exit 0 
+      feh --bg-fill "${img}"
+      exit -1 
     ;;
 
     --dir|-d) 
@@ -52,6 +52,8 @@ _main(){
 
   --time|-t)
     time=${2:-}
+    echo "${#}"
+    shift 2 
   ;; 
   *)
     _help
@@ -59,7 +61,7 @@ _main(){
   ;;
   esac 
  done 
-  
+
  set_wall "${wall_dir}"
  sleep "$time"
 }
@@ -67,4 +69,7 @@ _main(){
 ## inf loop
 while true; do 
   _main $@
-done
+  if [[ $? -eq -1 ]]; then
+    break 
+  fi 
+done 
